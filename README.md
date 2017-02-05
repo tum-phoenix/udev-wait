@@ -1,5 +1,7 @@
 # udev-wait
 
+[![Build Status](https://travis-ci.org/tum-phoenix/udev-wait.svg?branch=master)](https://travis-ci.org/tum-phoenix/udev-wait)
+
 Waits until a USB device is connected.
 
 ## Installation
