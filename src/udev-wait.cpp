@@ -46,10 +46,12 @@ bool checkIfDeviceAvailable(udev *udev, const char *subsystem,
         udev_device *dev = udev_device_new_from_syspath(udev, path);
         UdevDevicePtr usbDev(udev_device_get_parent_with_subsystem_devtype(
             dev, "usb", "usb_device"));
-        if (strcmp(udev_device_get_sysattr_value(usbDev.get(), "idVendor"),
-                   vendor) == 0 &&
-            strcmp(udev_device_get_sysattr_value(usbDev.get(), "idProduct"),
-                   product) == 0) {
+        const char *idVendor =
+            udev_device_get_sysattr_value(usbDev.get(), "idVendor");
+        const char *idProduct =
+            udev_device_get_sysattr_value(usbDev.get(), "idProduct");
+        if (idVendor != nullptr && idProduct != nullptr &&
+            strcmp(idVendor, vendor) == 0 && strcmp(idProduct, product) == 0) {
             return true;
         }
     }
